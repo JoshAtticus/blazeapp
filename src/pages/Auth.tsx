@@ -180,7 +180,7 @@ const Auth = () => {
           });
           if (error) throw error;
         }
-        toast.success("Account created! Welcome to Blaze!");
+        toast.success("Account created! Welcome to Balze!");
         navigate("/");
       }
     } catch (error: any) {
@@ -201,7 +201,7 @@ const Auth = () => {
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-3">
           <CardTitle className="text-3xl font-bold text-center">
-            {isLogin ? "Welcome back to Blaze" : "Join Blaze"}
+            {isLogin ? "Welcome back to Balze" : "Join Balze"}
           </CardTitle>
           <CardDescription className="text-center">
             {isLogin

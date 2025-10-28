@@ -79,8 +79,8 @@ const PostDetail = ({ currentUserId }: PostDetailProps) => {
       }
     };
     
-    window.addEventListener('blaze:update-post', handlePostUpdate as EventListener);
-    return () => window.removeEventListener('blaze:update-post', handlePostUpdate as EventListener);
+    window.addEventListener('balze:update-post', handlePostUpdate as EventListener);
+    return () => window.removeEventListener('balze:update-post', handlePostUpdate as EventListener);
   }, [postId]);
 
   const fetchPost = async () => {
@@ -201,8 +201,8 @@ const PostDetail = ({ currentUserId }: PostDetailProps) => {
         
         recordPostUpdate(postId!, { likes_count: newCount });
         emitPostUpdate({ postId: postId!, likes_count: newCount });
-        sessionStorage.setItem("blaze:refresh-feed", "1");
-        window.dispatchEvent(new Event("blaze:refresh-feed"));
+        sessionStorage.setItem("balze:refresh-feed", "1");
+        window.dispatchEvent(new Event("balze:refresh-feed"));
       } else {
         // If user has disliked, remove the dislike first
         if (isBrokenHearted) {
@@ -232,8 +232,8 @@ const PostDetail = ({ currentUserId }: PostDetailProps) => {
         
         recordPostUpdate(postId!, { likes_count: newCount });
         emitPostUpdate({ postId: postId!, likes_count: newCount });
-        sessionStorage.setItem("blaze:refresh-feed", "1");
-        window.dispatchEvent(new Event("blaze:refresh-feed"));
+        sessionStorage.setItem("balze:refresh-feed", "1");
+        window.dispatchEvent(new Event("balze:refresh-feed"));
       }
     } catch (error: any) {
       setIsLiked(previousLikeState);
@@ -273,8 +273,8 @@ const PostDetail = ({ currentUserId }: PostDetailProps) => {
         
         recordPostUpdate(postId!, { broken_hearts_count: newCount });
         emitPostUpdate({ postId: postId!, broken_hearts_count: newCount });
-        sessionStorage.setItem("blaze:refresh-feed", "1");
-        window.dispatchEvent(new Event("blaze:refresh-feed"));
+        sessionStorage.setItem("balze:refresh-feed", "1");
+        window.dispatchEvent(new Event("balze:refresh-feed"));
       } else {
         // If user has liked, remove the like first
         if (isLiked) {
@@ -304,8 +304,8 @@ const PostDetail = ({ currentUserId }: PostDetailProps) => {
         
         recordPostUpdate(postId!, { broken_hearts_count: newCount });
         emitPostUpdate({ postId: postId!, broken_hearts_count: newCount });
-        sessionStorage.setItem("blaze:refresh-feed", "1");
-        window.dispatchEvent(new Event("blaze:refresh-feed"));
+        sessionStorage.setItem("balze:refresh-feed", "1");
+        window.dispatchEvent(new Event("balze:refresh-feed"));
       }
     } catch (error: any) {
       setIsBrokenHearted(previousState);
@@ -346,8 +346,8 @@ const PostDetail = ({ currentUserId }: PostDetailProps) => {
         recordPostUpdate(postId!, { reposts_count: newCount });
         emitPostUpdate({ postId: postId!, reposts_count: newCount });
         toast.success("Repost removed");
-        sessionStorage.setItem("blaze:refresh-feed", "1");
-        window.dispatchEvent(new Event("blaze:refresh-feed"));
+        sessionStorage.setItem("balze:refresh-feed", "1");
+        window.dispatchEvent(new Event("balze:refresh-feed"));
       } else {
         // Optimistic update
         setIsReposted(true);
@@ -364,8 +364,8 @@ const PostDetail = ({ currentUserId }: PostDetailProps) => {
         recordPostUpdate(postId!, { reposts_count: newCount });
         emitPostUpdate({ postId: postId!, reposts_count: newCount });
         toast.success("Reposted!");
-        sessionStorage.setItem("blaze:refresh-feed", "1");
-        window.dispatchEvent(new Event("blaze:refresh-feed"));
+        sessionStorage.setItem("balze:refresh-feed", "1");
+        window.dispatchEvent(new Event("balze:refresh-feed"));
       }
     } catch (error: any) {
       setIsReposted(previousState);
@@ -392,8 +392,8 @@ const PostDetail = ({ currentUserId }: PostDetailProps) => {
       if (error) throw error;
 
       toast.success("Post deleted successfully");
-      sessionStorage.setItem("blaze:refresh-feed", "1");
-      window.dispatchEvent(new Event("blaze:refresh-feed"));
+      sessionStorage.setItem("balze:refresh-feed", "1");
+      window.dispatchEvent(new Event("balze:refresh-feed"));
       navigate("/");
     } catch (error: any) {
       toast.error("Failed to delete post");
@@ -429,8 +429,8 @@ const PostDetail = ({ currentUserId }: PostDetailProps) => {
       toast.success("Post updated successfully");
       setShowEditDialog(false);
       fetchPost();
-      sessionStorage.setItem("blaze:refresh-feed", "1");
-      window.dispatchEvent(new Event("blaze:refresh-feed"));
+      sessionStorage.setItem("balze:refresh-feed", "1");
+      window.dispatchEvent(new Event("balze:refresh-feed"));
     } catch (error: any) {
       console.error("Edit error:", error);
       toast.error("Failed to update post");

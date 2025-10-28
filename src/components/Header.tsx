@@ -5,7 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { useState, useEffect } from "react";
 import { Badge } from "@/components/ui/badge";
-import blazeLogo from "@/assets/blaze-logo-new.png";
+import balzeLogo from "@/assets/balze-logo-new.png";
 import { useAdmin } from "@/hooks/useAdmin";
 
 interface HeaderProps {
@@ -66,7 +66,7 @@ const Header = ({ userId }: HeaderProps) => {
       <div className="max-w-7xl mx-auto px-3 sm:px-6 py-3 sm:py-4">
         <div className="flex items-center justify-between gap-2">
           <button onClick={() => navigate("/")} className="hover:opacity-80 transition-opacity">
-            <img src={blazeLogo} alt="Blaze" className="h-10 w-10" />
+            <img src={balzeLogo} alt="Balze" className="h-10 w-10" />
           </button>
 
           <nav className="flex items-center gap-0.5 sm:gap-1">

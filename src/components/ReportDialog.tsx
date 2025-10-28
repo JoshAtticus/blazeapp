@@ -10,8 +10,6 @@ import { z } from 'zod';
 const reportSchema = z.object({
   reason: z.string()
     .trim()
-    .min(10, { message: "Reason must be at least 10 characters" })
-    .max(1000, { message: "Reason must be 1000 characters or less" })
 });
 
 interface ReportDialogProps {

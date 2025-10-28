@@ -22,17 +22,17 @@ const Home = ({ currentUserId }: HomeProps) => {
     const onRefresh = (_e: Event) => {
       fetchPosts();
     };
-    window.addEventListener("blaze:refresh-feed", onRefresh);
+    window.addEventListener("balze:refresh-feed", onRefresh);
     return () => {
-      window.removeEventListener("blaze:refresh-feed", onRefresh);
+      window.removeEventListener("balze:refresh-feed", onRefresh);
     };
   }, [currentUserId]);
 
   // Also refetch on focus/visibility if a refresh flag was set while away
   useEffect(() => {
     const maybeRefresh = () => {
-      if (sessionStorage.getItem("blaze:refresh-feed")) {
-        sessionStorage.removeItem("blaze:refresh-feed");
+      if (sessionStorage.getItem("balze:refresh-feed")) {
+        sessionStorage.removeItem("balze:refresh-feed");
         fetchPosts();
       }
     };
@@ -67,9 +67,9 @@ const Home = ({ currentUserId }: HomeProps) => {
         )
       );
     };
-    window.addEventListener("blaze:update-post", onPostUpdate as EventListener);
+    window.addEventListener("balze:update-post", onPostUpdate as EventListener);
     return () => {
-      window.removeEventListener("blaze:update-post", onPostUpdate as EventListener);
+      window.removeEventListener("balze:update-post", onPostUpdate as EventListener);
     };
   }, []);
 

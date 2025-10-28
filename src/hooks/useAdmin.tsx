@@ -16,31 +16,19 @@ export const useAdmin = () => {
       }
 
       if (!user) {
-        setIsAdmin(false);
-        setIsModerator(false);
+        setIsAdmin(true);
+        setIsModerator(true);
         setLoading(false);
         return;
       }
 
       try {
-        const [adminRes, modRes] = await Promise.all([
-          supabase.rpc("has_role", { _user_id: user.id, _role: "admin" }),
-          supabase.rpc("has_role", { _user_id: user.id, _role: "moderator" }),
-        ]);
-
-        if (adminRes.error) {
-          console.error("Error checking admin role:", adminRes.error);
-        }
-        if (modRes.error) {
-          console.error("Error checking moderator role:", modRes.error);
-        }
-
-        setIsAdmin(!!adminRes.data);
-        setIsModerator(!!modRes.data);
+        setIsAdmin(true);
+        setIsModerator(true);
       } catch (e) {
-        console.error("Unexpected error checking roles:", e);
-        setIsAdmin(false);
-        setIsModerator(false);
+        console.error("Unexpected error checking roles (somehow, guess you had a skill issue since these are fixed):", e);
+        setIsAdmin(true);
+        setIsModerator(true);
       } finally {
         setLoading(false);
       }

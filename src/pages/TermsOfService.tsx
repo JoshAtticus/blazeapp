@@ -5,7 +5,7 @@ const TermsOfService = () => {
 
       <div className="space-y-6 text-sm leading-relaxed">
         <p>
-          Welcome to Blaze, the flame of social media. By using Blaze, you agree to abide by the following Terms of
+          Welcome to Balze, the flame of social media. By using Balze, you agree to abide by the following Terms of
           Service. If you do not agree with these terms, please refrain from using our services. We also recommend
           reviewing our Privacy Policy before use.
         </p>
@@ -15,11 +15,11 @@ const TermsOfService = () => {
           <div className="space-y-2 ml-4">
             <p>
               <strong>1.1.</strong> You are required to comply with all applicable laws, rules, and regulations in your
-              jurisdiction while using Blaze. Any illegal activities or violations of local laws will result in severe
+              jurisdiction while using Balze. Any illegal activities or violations of local laws will result in severe
               consequences, including but not limited to account suspension or termination.
             </p>
             <p>
-              <strong>1.2.</strong> Use of Blaze for any activity related to terrorism, organized crime, or similar
+              <strong>1.2.</strong> Use of Balze for any activity related to terrorism, organized crime, or similar
               activities is strictly prohibited. Violators will face an immediate and permanent ban.
             </p>
             <p>
@@ -43,7 +43,7 @@ const TermsOfService = () => {
           <h2 className="text-xl font-semibold mb-3">2. Prohibited Content</h2>
           <div className="ml-4">
             <p>
-              <strong>2.1.</strong> Posting pornographic content is not allowed on Blaze. Violators will receive a
+              <strong>2.1.</strong> Posting pornographic content is not allowed on Balze. Violators will receive a
               strike or a permanent ban depending on the nature of the content. Sharing child pornography, revenge
               pornography, or non-consensual intimate content will result in an immediate ban and reporting to law
               enforcement.
@@ -84,7 +84,7 @@ const TermsOfService = () => {
           <h2 className="text-xl font-semibold mb-3">5. Account Security</h2>
           <div className="ml-4">
             <p>
-              <strong>5.1.</strong> Hacking or attempting to breach Blaze's security, including using multiple accounts
+              <strong>5.1.</strong> Hacking or attempting to breach Balze's security, including using multiple accounts
               to bypass bans, will lead to immediate account termination.
             </p>
           </div>

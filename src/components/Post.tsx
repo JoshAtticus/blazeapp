@@ -126,8 +126,8 @@ const Post = ({ post, currentUserId, onPostDeleted, showPinButton = false, isPin
       }
     };
 
-    window.addEventListener("blaze:update-post", handlePostUpdate as EventListener);
-    return () => window.removeEventListener("blaze:update-post", handlePostUpdate as EventListener);
+    window.addEventListener("balze:update-post", handlePostUpdate as EventListener);
+    return () => window.removeEventListener("balze:update-post", handlePostUpdate as EventListener);
   }, [post.id]);
 
   const trackView = async (): Promise<void> => {
@@ -260,8 +260,8 @@ const Post = ({ post, currentUserId, onPostDeleted, showPinButton = false, isPin
       }
 
       // Trigger feed refresh
-      sessionStorage.setItem("blaze:refresh-feed", "1");
-      window.dispatchEvent(new Event("blaze:refresh-feed"));
+      sessionStorage.setItem("balze:refresh-feed", "1");
+      window.dispatchEvent(new Event("balze:refresh-feed"));
     } catch (error) {
       console.error("Like update failed:", error);
       // Rollback optimistic update
@@ -280,8 +280,8 @@ const Post = ({ post, currentUserId, onPostDeleted, showPinButton = false, isPin
       if (error) throw error;
 
       toast.success("Post deleted successfully");
-      sessionStorage.setItem("blaze:refresh-feed", "1");
-      window.dispatchEvent(new Event("blaze:refresh-feed"));
+      sessionStorage.setItem("balze:refresh-feed", "1");
+      window.dispatchEvent(new Event("balze:refresh-feed"));
       setShowDeleteDialog(false);
       onPostDeleted?.();
     } catch (error: any) {
@@ -318,8 +318,8 @@ const Post = ({ post, currentUserId, onPostDeleted, showPinButton = false, isPin
       toast.success("Post updated successfully");
       setShowEditDialog(false);
       onPostDeleted?.(); // Refresh the posts
-      sessionStorage.setItem("blaze:refresh-feed", "1");
-      window.dispatchEvent(new Event("blaze:refresh-feed"));
+      sessionStorage.setItem("balze:refresh-feed", "1");
+      window.dispatchEvent(new Event("balze:refresh-feed"));
     } catch (error: any) {
       console.error("Edit error:", error);
       toast.error("Failed to update post");
@@ -357,8 +357,8 @@ const Post = ({ post, currentUserId, onPostDeleted, showPinButton = false, isPin
 
         recordPostUpdate(post.id, { broken_hearts_count: newCount });
         emitPostUpdate({ postId: post.id, broken_hearts_count: newCount });
-        sessionStorage.setItem("blaze:refresh-feed", "1");
-        window.dispatchEvent(new Event("blaze:refresh-feed"));
+        sessionStorage.setItem("balze:refresh-feed", "1");
+        window.dispatchEvent(new Event("balze:refresh-feed"));
       } else {
         // If user has liked, remove the like first
         if (isLiked) {
@@ -384,8 +384,8 @@ const Post = ({ post, currentUserId, onPostDeleted, showPinButton = false, isPin
 
         recordPostUpdate(post.id, { broken_hearts_count: newCount });
         emitPostUpdate({ postId: post.id, broken_hearts_count: newCount });
-        sessionStorage.setItem("blaze:refresh-feed", "1");
-        window.dispatchEvent(new Event("blaze:refresh-feed"));
+        sessionStorage.setItem("balze:refresh-feed", "1");
+        window.dispatchEvent(new Event("balze:refresh-feed"));
       }
     } catch (error: any) {
       // Rollback on error
@@ -423,8 +423,8 @@ const Post = ({ post, currentUserId, onPostDeleted, showPinButton = false, isPin
         recordPostUpdate(post.id, { reposts_count: newCount });
         emitPostUpdate({ postId: post.id, reposts_count: newCount });
         toast.success("Repost removed");
-        sessionStorage.setItem("blaze:refresh-feed", "1");
-        window.dispatchEvent(new Event("blaze:refresh-feed"));
+        sessionStorage.setItem("balze:refresh-feed", "1");
+        window.dispatchEvent(new Event("balze:refresh-feed"));
       } else {
         // Optimistic update
         setIsReposted(true);
@@ -441,8 +441,8 @@ const Post = ({ post, currentUserId, onPostDeleted, showPinButton = false, isPin
         recordPostUpdate(post.id, { reposts_count: newCount });
         emitPostUpdate({ postId: post.id, reposts_count: newCount });
         toast.success("Reposted!");
-        sessionStorage.setItem("blaze:refresh-feed", "1");
-        window.dispatchEvent(new Event("blaze:refresh-feed"));
+        sessionStorage.setItem("balze:refresh-feed", "1");
+        window.dispatchEvent(new Event("balze:refresh-feed"));
       }
     } catch (error: any) {
       // Rollback on error

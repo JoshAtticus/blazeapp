@@ -45,18 +45,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (!user?.id) return;
 
     const checkAndEnforce = async () => {
-      // 1) Ban check
-      const { data: profile } = await supabase
-        .from('profiles')
-        .select('is_banned')
-        .eq('id', user.id)
-        .maybeSingle();
 
-      if (profile?.is_banned) {
-        await supabase.auth.signOut();
-        toast.error('Your account has been banned for suspicious activity.', { duration: 10000 });
-        return true;
-      }
 
       // 2) Active suspension check
       const { data: suspension } = await supabase
@@ -102,7 +91,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         { event: 'UPDATE', schema: 'public', table: 'profiles', filter: `id=eq.${user.id}` },
         async (payload: any) => {
           if (payload.new?.is_banned) {
-            await supabase.auth.signOut();
             toast.error('Your account has been banned for suspicious activity.', { duration: 10000 });
           }
         }

@@ -27,14 +27,14 @@ BEGIN
   -- Validate avatar_url
   IF NEW.avatar_url IS NOT NULL THEN
     IF NEW.avatar_url !~ ('^' || storage_url_pattern) THEN
-      RAISE EXCEPTION 'avatar_url must be from the Blaze storage bucket or null';
+      RAISE EXCEPTION 'avatar_url must be from the Balze storage bucket or null';
     END IF;
   END IF;
   
   -- Validate banner_url
   IF NEW.banner_url IS NOT NULL THEN
     IF NEW.banner_url !~ ('^' || storage_url_pattern) THEN
-      RAISE EXCEPTION 'banner_url must be from the Blaze storage bucket or null';
+      RAISE EXCEPTION 'banner_url must be from the Balze storage bucket or null';
     END IF;
   END IF;
   

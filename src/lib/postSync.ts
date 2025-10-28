@@ -6,7 +6,7 @@ export type PostCounters = {
   updatedAt?: number;
 };
 
-const KEY = "blaze:post-updates";
+const KEY = "balze:post-updates";
 
 type UpdateMap = Record<string, PostCounters>;
 

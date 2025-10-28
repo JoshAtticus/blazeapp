@@ -65,7 +65,7 @@ serve(async (req) => {
     // Fetch the image
     const response = await fetch(imageUrl, {
       headers: {
-        'User-Agent': 'Blaze-Image-Proxy/1.0',
+        'User-Agent': 'Balze-Image-Proxy/1.0',
       },
     });
 

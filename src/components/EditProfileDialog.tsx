@@ -10,35 +10,7 @@ import { Loader2, Upload } from "lucide-react";
 import { z } from "zod";
 
 const profileSchema = z.object({
-  displayName: z.string().trim().max(32, { message: "Display name must be 32 characters or less" }).optional().or(z.literal("")),
-  bio: z.string().trim().max(500, { message: "Bio must be 500 characters or less" }).optional().or(z.literal("")),
-  website: z.string().trim().url({ message: "Please enter a valid URL" }).max(255, { message: "Website URL is too long" }).optional().or(z.literal("")),
-  location: z.string().trim().max(100, { message: "Location must be 100 characters or less" }).optional().or(z.literal("")),
 });
-
-const validateImageFile = async (file: File): Promise<boolean> => {
-  const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
-  
-  // Check MIME type
-  if (!validTypes.includes(file.type)) {
-    return false;
-  }
-  
-  // Check file signature (magic bytes)
-  const buffer = await file.slice(0, 4).arrayBuffer();
-  const bytes = new Uint8Array(buffer);
-  const hex = Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join('');
-  
-  // Check for common image file signatures
-  const signatures = {
-    'ffd8ff': 'jpeg',
-    '89504e47': 'png',
-    '47494638': 'gif',
-    '52494646': 'webp',
-  };
-  
-  return Object.keys(signatures).some(sig => hex.startsWith(sig));
-};
 
 interface EditProfileDialogProps {
   open: boolean;
@@ -70,15 +42,6 @@ const EditProfileDialog = ({ open, onOpenChange, profile, onProfileUpdated }: Ed
   const handleAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      if (file.size > 524288000) {
-        toast.error("Avatar image must be less than 500MB");
-        return;
-      }
-      const isValid = await validateImageFile(file);
-      if (!isValid) {
-        toast.error("Invalid image file. Please upload a valid JPEG, PNG, GIF, or WebP image.");
-        return;
-      }
       setAvatarFile(file);
       setAvatarPreview(URL.createObjectURL(file));
     }
@@ -87,15 +50,6 @@ const EditProfileDialog = ({ open, onOpenChange, profile, onProfileUpdated }: Ed
   const handleBannerChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      if (file.size > 524288000) {
-        toast.error("Banner image must be less than 500MB");
-        return;
-      }
-      const isValid = await validateImageFile(file);
-      if (!isValid) {
-        toast.error("Invalid image file. Please upload a valid JPEG, PNG, GIF, or WebP image.");
-        return;
-      }
       setBannerFile(file);
       setBannerPreview(URL.createObjectURL(file));
     }
@@ -144,10 +98,10 @@ const EditProfileDialog = ({ open, onOpenChange, profile, onProfileUpdated }: Ed
       const { error } = await supabase
         .from("profiles")
         .update({
-          display_name: validatedData.displayName || null,
-          bio: validatedData.bio || null,
-          website: validatedData.website || null,
-          location: validatedData.location || null,
+          display_name: displayName || null,
+          bio: bio || null,
+          website: website || null,
+          location: location || null,
           avatar_url: avatarUrl,
           banner_url: bannerUrl,
         })

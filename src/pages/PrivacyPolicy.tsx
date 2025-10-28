@@ -25,7 +25,7 @@ const PrivacyPolicy = () => {
             <p className="text-lg">Welcome to our Privacy Policy!</p>
 
             <p>
-              Your privacy and security are paramount to us at Blaze. We strive to be transparent and honest about how
+              Your privacy and security are paramount to us at Balze. We strive to be transparent and honest about how
               we handle your data. This Privacy Policy outlines our practices regarding the collection, use, and
               protection of your personal information.
             </p>
@@ -34,11 +34,11 @@ const PrivacyPolicy = () => {
               <h2 className="text-xl font-semibold mb-3">1. Consent for Minors</h2>
               <p>
                 If you are under 13 years old, you must obtain permission from your parents/guardians before using
-                Blaze. Your local laws, however, may prohibit users who are under 16 to use social media, such as
+                Balze. Your local laws, however, may prohibit users who are under 16 to use social media, such as
                 Australia and the EU. Check your local laws for more information. We adhere to regulations such as COPPA
                 (Children's Online Privacy Protection Act) to ensure compliance and protect minors' privacy. If it is
                 found that you are under 13 or under the age of restriction in your country, and you decide to use
-                Blaze, you will be banned from the platform until you become the legal age to use social media in your
+                Balze, you will be banned from the platform until you become the legal age to use social media in your
                 country.
               </p>
             </section>
@@ -80,12 +80,12 @@ const PrivacyPolicy = () => {
               <p>
                 Your control over your data is important to us. We aim to provide transparency and control to our users.
                 Please feel free to contact us at{" "}
-                <a href="mailto:contactblaze@proton.me" className="text-primary hover:underline">
-                  contactblaze@proton.me
+                <a href="mailto:contactbalze@proton.me" className="text-primary hover:underline">
+                  contactbalze@proton.me
                 </a>{" "}
                 or text us at{" "}
                 <a href="tel:+15623525293" className="text-primary hover:underline">
-                  +1 (562)-35BLAZE (+1 (562)-352-5293)
+                  +1 (562)-35BALZE (+1 (562)-352-5293)
                 </a>{" "}
                 for privacy inquiries and complaints. We ensure timely responses within 60 days.
               </p>
@@ -96,8 +96,8 @@ const PrivacyPolicy = () => {
               <p>
                 If you believe that we have violated your rights or relevant privacy laws, you have the right to file a
                 complaint. Please contact us at{" "}
-                <a href="mailto:contactblaze@proton.me" className="text-primary hover:underline">
-                  contactblaze@proton.me
+                <a href="mailto:contactbalze@proton.me" className="text-primary hover:underline">
+                  contactbalze@proton.me
                 </a>
                 . For Californian residents, you may also file a complaint with the California Attorney General's
                 office. For EU residents, you can file a complaint with relevant Data Protection Authorities.

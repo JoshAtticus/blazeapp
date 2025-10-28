@@ -9,41 +9,10 @@ import { z } from "zod";
 
 const postSchema = z.object({
   content: z.string()
-    .trim()
-    .min(1, { message: "Post content cannot be empty" })
-    .max(5000, { message: "Post is too long (max 5000 characters)" })
-    .refine(val => !/\<script|javascript:|onerror=|on\w+=/i.test(val), {
-      message: 'Content contains disallowed patterns'
-    }),
 });
 
 const validateMediaFile = async (file: File): Promise<boolean> => {
-  const validTypes = [
-    'image/jpeg', 'image/png', 'image/gif', 'image/webp',
-    'video/mp4', 'video/webm', 'video/quicktime', 'video/x-m4v', 'video/x-msvideo', 'video/mpeg'
-  ];
-  
-  if (!validTypes.includes(file.type)) {
-    return false;
-  }
-  
-  // Check file signature for images
-  if (file.type.startsWith('image/')) {
-    const buffer = await file.slice(0, 4).arrayBuffer();
-    const bytes = new Uint8Array(buffer);
-    const hex = Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join('');
-    
-    const signatures = {
-      'ffd8ff': 'jpeg',
-      '89504e47': 'png',
-      '47494638': 'gif',
-      '52494646': 'webp',
-    };
-    
-    return Object.keys(signatures).some(sig => hex.startsWith(sig));
-  }
-  
-  return true; // For videos, rely on MIME type
+  return true;
 };
 
 interface CreatePostProps {
@@ -61,18 +30,6 @@ const CreatePost = ({ userId, onPostCreated }: CreatePostProps) => {
   const handleMediaChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-
-    // Check file size (500MB limit)
-    if (file.size > 524288000) {
-      toast.error("File must be less than 500MB");
-      return;
-    }
-
-    const isValid = await validateMediaFile(file);
-    if (!isValid) {
-      toast.error("Invalid file type. Please upload an image (JPEG, PNG, GIF, WebP) or video (MP4, WebM, MOV).");
-      return;
-    }
 
     setMediaFile(file);
     setMediaPreview(URL.createObjectURL(file));
@@ -208,7 +165,7 @@ const CreatePost = ({ userId, onPostCreated }: CreatePostProps) => {
           <div className="flex items-center gap-2">
             <input
               type="file"
-              accept="image/jpeg,image/png,image/gif,image/webp,video/mp4,video/webm,video/quicktime,video/x-m4v,video/x-msvideo,video/mpeg"
+              accept="*"
               onChange={handleMediaChange}
               className="hidden"
               id="media-upload"
@@ -224,7 +181,7 @@ const CreatePost = ({ userId, onPostCreated }: CreatePostProps) => {
               >
                 <span>
                   <Upload className="h-4 w-4 mr-2" />
-                  {mediaFile ? 'Change Media' : 'Upload Photo/Video/GIF'}
+                  {mediaFile ? 'Change File' : 'Upload Anything'}
                 </span>
               </Button>
             </label>

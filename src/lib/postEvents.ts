@@ -7,5 +7,5 @@ export type PostUpdatePayload = {
 };
 
 export function emitPostUpdate(payload: PostUpdatePayload) {
-  window.dispatchEvent(new CustomEvent<PostUpdatePayload>('blaze:update-post', { detail: payload }));
+  window.dispatchEvent(new CustomEvent<PostUpdatePayload>('balze:update-post', { detail: payload }));
 }
