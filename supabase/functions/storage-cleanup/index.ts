@@ -39,7 +39,7 @@ Deno.serve(async (req) => {
     }
 
     const { action, bucket, prefix, files } = await req.json();
-
+    
     console.log(`Storage cleanup action: ${action}`);
 
     switch (action) {
