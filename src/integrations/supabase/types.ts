@@ -724,7 +724,7 @@ export type Database = {
         }[]
       }
       admin_bulk_delete_users: {
-        Args: { confirm_deletion?: boolean; user_ids: string[] }
+        Args: { user_ids: string[] }
         Returns: Json
       }
       admin_delete_all_follows: { Args: never; Returns: undefined }

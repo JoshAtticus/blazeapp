@@ -178,7 +178,6 @@ const AdminUsers = () => {
     try {
       const { data, error } = await supabase.rpc("admin_bulk_delete_users", {
         user_ids: Array.from(selectedUsers),
-        confirm_deletion: true, // Explicit confirmation required
       });
 
       if (error) throw error;
