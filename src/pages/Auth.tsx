@@ -77,76 +77,21 @@ const Auth = () => {
     setLoading(true);
 
     try {
-      // Check rate limit before auth
-      const { data: rateLimitCheck, error: rateLimitError } = await supabase.functions.invoke('check-rate-limit', {
-        body: { endpoint: isLogin ? 'login' : 'signup' }
-      });
-
-      if (rateLimitError || !rateLimitCheck?.allowed) {
-        throw new Error(rateLimitCheck?.reason || 'Too many requests. Please try again later.');
-      }
       if (isLogin) {
-        let userId: string | undefined;
-        let userEmail: string | undefined;
         if (authMethod === "email") {
           const validatedData = emailLoginSchema.parse({ email, password });
-          const { data, error } = await supabase.auth.signInWithPassword({
+          const { error } = await supabase.auth.signInWithPassword({
             email: validatedData.email,
             password: validatedData.password,
           });
           if (error) throw error;
-          userId = data.user?.id;
-          userEmail = data.user?.email;
         } else {
           const validatedData = phoneLoginSchema.parse({ phone, password });
-          const { data, error } = await supabase.auth.signInWithPassword({
+          const { error } = await supabase.auth.signInWithPassword({
             phone: validatedData.phone,
             password: validatedData.password,
           });
           if (error) throw error;
-          userId = data.user?.id;
-        }
-
-        // Check if email domain is blocked
-        if (userEmail) {
-          const emailDomain = userEmail.split('@')[1]?.toLowerCase();
-          if (emailDomain) {
-            const { data: blockedDomain } = await supabase
-              .from('blocked_email_domains')
-              .select('domain')
-              .ilike('domain', emailDomain)
-              .maybeSingle();
-
-            if (blockedDomain) {
-              await supabase.auth.signOut();
-              throw new Error('Sign-ins from this email domain are not allowed');
-            }
-          }
-        }
-
-        // Check if user is suspended
-        if (userId) {
-          const { data: suspensionData } = await supabase
-            .from('user_suspensions')
-            .select('reason, is_permanent, expires_at')
-            .eq('user_id', userId)
-            .maybeSingle();
-
-          if (suspensionData) {
-            await supabase.auth.signOut();
-            
-            if (suspensionData.is_permanent) {
-              throw new Error(`Your account has been permanently suspended.\n\nReason: ${suspensionData.reason || 'No reason provided'}\n\nPlease contact support if you believe this is a mistake.`);
-            } else if (suspensionData.expires_at) {
-              const expiryDate = new Date(suspensionData.expires_at);
-              const now = new Date();
-              
-              if (expiryDate > now) {
-                const daysLeft = Math.ceil((expiryDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
-                throw new Error(`Your account is suspended until ${expiryDate.toLocaleDateString()}.\n\nReason: ${suspensionData.reason || 'No reason provided'}\n\nTime remaining: ${daysLeft} day${daysLeft !== 1 ? 's' : ''}`);
-              }
-            }
-          }
         }
 
         toast.success("Welcome back!");
